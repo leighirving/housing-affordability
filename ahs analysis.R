@@ -29,6 +29,20 @@ data_2015 <- data_2015 %>%
 merge <- rbind(data_2019, data_2017)
 d <- rbind(merge, data_2015)
 
+#rename columns
+d <- d %>% 
+  rename(
+    MSA = OMB13CBSA,
+    HHI = HINCP,
+    HISPANIC = HHSPAN,
+    RACE = HHRACE,
+    EDU_LEVEL = HHGRAD,
+    MTHLY_HOUSING_COST = TOTHCAMT,
+    MORTGAGE = MORTAMT,
+    REAL_ESTATE_TAX = PROTAXAMT,
+    INSURANCE = INSURAMT
+  )
+
 ### Data Cleaning
 
 #convert relevant variables to int
