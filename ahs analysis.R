@@ -146,3 +146,38 @@ d$EDU_LEVEL <-relevel(d$EDU_LEVEL, "Less than 9th grade")
 d <- d[!is.na(d$HHI), ] #drop rows where HHI is na
 
 d <- d[d$HHI > 15000, ] #drop rows below cut-off point
+
+
+#Subset dataframe
+
+d <- d[c("HHI","HHAGE", "HISPANIC", "RACE", "PERPOVLVL", "EDU_LEVEL", "TENURE")]
+
+colSums(is.na(d))
+d <- d[complete.cases(d), ]                            # Drop incomplete rows
+
+### Model
+
+set.seed(42)
+trainIndex <- sample(1:nrow(d), size=round(0.75*nrow(d)), replace=FALSE)
+train <- d[trainIndex,]
+test  <- d[-trainIndex,]
+
+logit  <- glm(TENURE ~ HHI + HHAGE + HISPANIC + RACE + PERPOVLVL + EDU_LEVEL, family=binomial (link="logit"), data=d)
+summary(logit)
+
+test_x <- test[ , c(1:6)]
+predlogit <-predict(logit, newdata=test_x, type="response")
+predlogit <- ifelse(predlogit>0.5, 1, 0)
+
+table(test$TENURE, predlogit)                         # Confusion matrix
+ClassificationError <- mean(predlogit != test$TENURE) # Classification error
+print(paste("Accuracy = ", 1-ClassificationError))        # Accuraty rate
+
+library(ROCR)
+pr <- prediction(predlogit, test$TENURE)
+prf <- performance(pr, measure="tpr", x.measure="fpr")
+plot(prf)                                                 # ROC plot: TPR vs FPR
+
+auc <- performance(pr, measure="auc")
+auc <- auc@y.values[[1]]
+auc                                                       # Area Under the Curve
