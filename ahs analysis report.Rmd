@@ -1,0 +1,32 @@
+---
+title: "Analysis of the American Housing Survey (AHS), 2015-2019"
+author: "Leighann Irving"
+date: "5/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setwd, echo=FALSE}
+setwd("C:/Users/leigh/Documents/USF/ISM 6137 - SDM/Project")
+```
+## Executive Summary
+
+While there is no universal definition, housing affordability broadly refers to the financial ability to purchase a home. Homeownership rates among young adults today are even lower than in 1988, and the share of cost-burdened renters is significantly higher. The housing affordability crisis is a complex, multidimensional issue driven largely by the gap between housing prices and household income and is influenced by the balance between housing supply and demand, the labor market, and mortgage rates by way of Federal monetary policy.
+
+The analysis in this paper was performed on the top 15 Metropolitan Statistical Areas (MSA's) in the United States, over the period 2015 to 2019. Statistical methods such as logistic regression were used for the analysis.
+
+
+## Objective
+
+The aims of this project are to determine:
+1. If housing affordability has decreased
+2. The demographics of households unable to afford a home
+
+
+## Data Source/ Preparation
+
+The data was taken from the American Housing Survey (AHS) which is sponsored by the Department of Housing and Urban Development (HUD) and conducted by the U.S. Census Bureau every two years.
+In the AHS microdata, the basic unit is an individual housing unit.
