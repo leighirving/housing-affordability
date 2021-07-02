@@ -175,6 +175,11 @@ library(lattice)
 library(ggplot2)
 options(scipen=5) #show full numbers instead of exponential notation
 
+#subset years
+d_2019 <- d[d$YEAR == 2019, ]
+d_2017 <- d[d$YEAR == 2017, ]
+d_2015 <- d[d$YEAR == 2015, ]
+
 ### Model
 
 set.seed(42)
