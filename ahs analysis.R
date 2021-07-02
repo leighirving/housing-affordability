@@ -169,6 +169,12 @@ d <- d[c("HHI","HHAGE", "HISPANIC", "RACE", "PERPOVLVL", "EDU_LEVEL", "TENURE")]
 colSums(is.na(d))
 d <- d[complete.cases(d), ]                            # Drop incomplete rows
 
+
+### Descriptive Analysis
+library(lattice)
+library(ggplot2)
+options(scipen=5) #show full numbers instead of exponential notation
+
 ### Model
 
 set.seed(42)
